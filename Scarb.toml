@@ -4,8 +4,11 @@ version = "0.1.0"
 
 # See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest
 
+[[target.starknet-contract]]
+sierra = true
+
 [dependencies]
-# foo = { path = "vendor/foo" }
+starknet = ">=2.0.1"
 
 [tool.forge]
 # exit_first = true
