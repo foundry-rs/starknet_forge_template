@@ -12,7 +12,7 @@ use starknet_forge_template::IHelloStarknetSafeDispatcherTrait;
 fn deploy_hello_starknet() -> ContractAddress {
     let class_hash = declare('HelloStarknet').unwrap();
     let prepared = PreparedContract {
-        contract_address: 1234, class_hash: class_hash, constructor_calldata: @ArrayTrait::new()
+        class_hash: class_hash, constructor_calldata: @ArrayTrait::new()
     };
     let contract_address = deploy(prepared).unwrap();
 
