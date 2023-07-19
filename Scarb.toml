@@ -10,5 +10,5 @@ sierra = true
 [dependencies]
 starknet = "2.0.1"
 
-[tool.forge]
+[tool.snforge]
 # exit_first = true
