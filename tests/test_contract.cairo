@@ -9,21 +9,17 @@ use cheatcodes::PreparedContract;
 use starknet_forge_template::IHelloStarknetSafeDispatcher;
 use starknet_forge_template::IHelloStarknetSafeDispatcherTrait;
 
-fn deploy_hello_starknet() -> ContractAddress {
-    let class_hash = declare('HelloStarknet').unwrap();
+fn deploy_contract(name: felt252) -> ContractAddress {
+    let class_hash = declare(name);
     let prepared = PreparedContract {
-        class_hash: class_hash, constructor_calldata: @ArrayTrait::new()
+        class_hash, constructor_calldata: @ArrayTrait::new()
     };
-    let contract_address = deploy(prepared).unwrap();
-
-    let contract_address: ContractAddress = contract_address.try_into().unwrap();
-
-    contract_address
+    deploy(prepared).unwrap()
 }
 
 #[test]
 fn test_increase_balance() {
-    let contract_address = deploy_hello_starknet();
+    let contract_address = deploy_contract('HelloStarknet');
 
     let safe_dispatcher = IHelloStarknetSafeDispatcher { contract_address };
 
@@ -38,7 +34,7 @@ fn test_increase_balance() {
 
 #[test]
 fn test_cannot_increase_balance_with_zero_value() {
-    let contract_address = deploy_hello_starknet();
+    let contract_address = deploy_contract('HelloStarknet');
 
     let safe_dispatcher = IHelloStarknetSafeDispatcher { contract_address };
 
