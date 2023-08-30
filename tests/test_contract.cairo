@@ -5,17 +5,14 @@ use traits::TryInto;
 use starknet::ContractAddress;
 use starknet::Felt252TryIntoContractAddress;
 
-use snforge_std::{declare, PreparedContract, deploy};
+use snforge_std::{declare, ContractClassTrait};
 
 use starknet_forge_template::IHelloStarknetSafeDispatcher;
 use starknet_forge_template::IHelloStarknetSafeDispatcherTrait;
 
 fn deploy_contract(name: felt252) -> ContractAddress {
-    let class_hash = declare(name);
-    let prepared = PreparedContract {
-        class_hash, constructor_calldata: @ArrayTrait::new()
-    };
-    deploy(prepared).unwrap()
+    let contract = declare(name);
+    contract.deploy(@ArrayTrait::new()).unwrap()
 }
 
 #[test]
