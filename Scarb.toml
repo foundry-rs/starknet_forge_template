@@ -9,7 +9,7 @@ sierra = true
 casm = true
 
 [dependencies]
-starknet = "2.2.0"
+starknet = "2.3.0"
 snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.5.0" }
 
 [tool.snforge]
