@@ -19,6 +19,6 @@ jobs:
           scarb-version: 2.3.0
       - uses: foundry-rs/setup-snfoundry@v2
         with:
-          starknet-foundry-version: 0.9.1
+          starknet-foundry-version: latest
 
       - run: snforge test
