@@ -5,6 +5,9 @@ on:
     branches:
       - master
   pull_request:
+  schedule:
+    # At 16:00 on Wednesday
+    - cron: "0 16 * * 3"
 
 jobs:
   run-tests:
