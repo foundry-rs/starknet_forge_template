@@ -18,10 +18,8 @@ jobs:
       - name: Get scarb version
         id: extractScarbVersion
         run: |
-          curl -s https://api.github.com/repos/foundry-rs/starknet-foundry/releases/latest | grep tarball_url | cut -d '"' -f 4 | xargs -n 1 curl -L -o latest.tar.gz
-          mkdir latest
-          tar -xz --strip-components=1 -C latest -f latest.tar.gz
-          version=$(grep scarb latest/.tool-versions | awk '{print $2}')
+          snfoundry_version=$(curl -s https://api.github.com/repos/foundry-rs/starknet-foundry/releases/latest | grep tarball_url | awk -F '/' '{print $8}' | tr -d '",')
+          version=$(curl -s https://raw.githubusercontent.com/foundry-rs/starknet-foundry/$snfoundry_version/.tool-versions | awk '{print $2}')
           
           echo "scarbVersion=$version" >> "$GITHUB_OUTPUT"
 
